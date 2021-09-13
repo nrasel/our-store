@@ -20,12 +20,12 @@ const showProducts = (products) => {
           <p>Category: ${product.category}</p>
           <h5>Price: $ ${product.price}</h5>
           <p>
-              <span class="rating-color">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-              </span> 
+            <span class="rating-color">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star-half-alt"></i>
+            </span> 
               ${product.rating.rate} Ratings /  ${product.rating.count} Reviews
           </p>
           <button onclick="addToCart(${product.id},${product.price})" id="addToCart-btn"  class="buy-now btn add-cart">add to cart <i class="fas fa-shopping-cart"></i></button>
@@ -35,16 +35,21 @@ const showProducts = (products) => {
     document.getElementById("all-products").appendChild(div);
   }
 };
+
+// add to cart
 let count = 0;
 const addToCart = (id, price) => {
   count = count + 1;
+  // update price
   updatePrice("price", price);
-
+  // update tax charge
   updateTaxAndCharge();
+  // update total
   updateTotal()
   document.getElementById("total-Products").innerText = count;
 };
 
+// get input value
 const getInputValue = (id) => {
   const element = document.getElementById(id).innerText;
   const converted = parseFloat(element);
@@ -88,4 +93,6 @@ const updateTotal = () => {
     getInputValue("total-tax");
   document.getElementById("total").innerText = grandTotal.toFixed(2);
 };
+
+// load products
 loadProducts();
